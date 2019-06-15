@@ -37,15 +37,45 @@ if authenticated == False:
 #start the infinite loop so we can get the data
 #every couple of seconds
 if authenticated == True:
+
     ## set infinite to true so we get an infinite loop
     infinite = True
     while infinite == True:
-        print('Authenticated')
-        ##todo
-        ##finish webscrapping with extracting messages and tag spans
-        ##compare them to the ones in the storage
-        ##if there are missmatches - notify
-        ##re-store them for further matchings
+        scrapper.open('http://balkan-samp.com/forum/index.php'
+
+        ## select message span and extract the 
+        ## message count from the span
+        message_span = str(scrapper.select('#button_pm'))
+        message_res = re.search("\[<strong>(.*?)\</strong>]", message_span)
+
+        ## chack if the regex matched with [*] if it is
+        ## we check current message count with the provided one
+        ## and if there are no messages set message count to 0
+        if message_res:
+            result = int(message_res.group(1))
+            data.compare_messages(result)
+        else:
+            if data.get_message_count() != 0:
+                data.set_message_count(0)
+
+
+        ## select profile span and extract the
+        ## mention tag
+        profile_span = str(scrapper.select("#button_profile"))
+        profile_res = re.search("\[<strong>(.*?)\</strong>]", profile_span)
+        
+
+        ## chack if the regex matched with [*] if it is
+        ## we check current mentions count with the provided one
+        ## and if there are no mentions set mention count to 0
+        if profile_res:
+            result = int(profile_res.group(1))
+            data.compare_mentions(result)
+        else:
+            if data.get_mention_count() != 0:
+                data.set_mention_count(0)
+
+
 
     ## loop every 10 seconds
     time.sleep(10)
