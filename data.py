@@ -15,13 +15,13 @@ def get_message_count():
 def set_message_count(count):
 
     ## open json file with write opt
-    with open('data.json', "r+") as jsonFile:
-        data = json.load(jsonFile)
+    with open('data.json', "r+") as f:
+        data = json.load(f)
 
         ## store count with provided one
         data["messages"]["count"] = int(count)
 
         ## write to the file
-        jsonFile.seek(0)
-        json.dump(data, jsonFile, indent=4)
-        jsonFile.truncate()
+        f.seek(0)
+        json.dump(data, f, indent=4)
+        f.truncate()
