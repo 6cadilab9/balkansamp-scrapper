@@ -41,7 +41,7 @@ if authenticated == True:
     ## set infinite to true so we get an infinite loop
     infinite = True
     while infinite == True:
-        scrapper.open('http://balkan-samp.com/forum/index.php'
+        scrapper.open('http://balkan-samp.com/forum/index.php')
 
         ## select message span and extract the 
         ## message count from the span
@@ -62,9 +62,8 @@ if authenticated == True:
         ## select profile span and extract the
         ## mention tag
         profile_span = str(scrapper.select("#button_profile"))
-        profile_res = re.search("\[<strong>(.*?)\</strong>]", profile_span)
+        profile_res = re.search("\[(.*?)\]", profile_span)
         
-
         ## chack if the regex matched with [*] if it is
         ## we check current mentions count with the provided one
         ## and if there are no mentions set mention count to 0

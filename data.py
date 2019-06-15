@@ -36,7 +36,7 @@ def compare_messages(param):
 
     if current_count != param:
         set_message_count(param)
-        print('You have an unread message!')
+        print("You have unread messages (%d) !" % get_message_count())
 
 ## get the mention count from
 ## json file
@@ -72,4 +72,4 @@ def compare_mentions(param):
 
     if current_count != param:
         set_mention_count(param)
-        print('You have been mentioned!')
+        print("You have been mentioned in a post (%d) !" % get_mention_count())
