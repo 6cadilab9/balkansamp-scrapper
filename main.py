@@ -57,7 +57,8 @@ if authenticated == True:
         else:
             if data.get_message_count() != 0:
                 data.set_message_count(0)
-
+                print('You read the message!')
+                
 
         ## select profile span and extract the
         ## mention tag
@@ -73,6 +74,7 @@ if authenticated == True:
         else:
             if data.get_mention_count() != 0:
                 data.set_mention_count(0)
+                print('You have opened the mention!')
 
 
 
